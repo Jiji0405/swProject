@@ -30,6 +30,46 @@ public class FileEdit {
 
 	
 	public boolean edit(File file){
+		Scanner scan = new Scanner(System.in);
+		String result = "";
+		String updateString = "";
+		String line = "";
+		int update, count=0;
+		
+		FileReader fr = null;
+		FileWriter fw = null;
+		BufferedReader br = null;
+		
+		System.out.println("수정할 내용의 번호를 입력하세요.");
+		update = scan.nextInt();
+		System.out.println("수정 내용을 입력하세요.");
+		updateString = scan.next();
+		
+		try{
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			
+			while((result = br.readLine())!= null){
+				count++;
+				if(count == update){
+					line += updateString + "\n";
+				}else{
+					line += result + "\n";
+				}
+			}
+
+			System.out.println(line);
+			fw = new FileWriter(file);
+			fw.write(line);
+			count = 0;
+			
+			fr.close();
+			fw.close();
+					
+			
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+		}
 		return true;
 	}
 	
