@@ -6,18 +6,40 @@ import java.io.*;
 public class FileEdit {
 	//File memo = new File("C:\\Users\\Owner\\sw\\memo.txt");
 
-	public static boolean save(File file){
+	public static void main(String[] args) throws IOException {
+		
+		 File memo = new File("C:\\Users\\Owner\\sw\\memo.txt");
+		 save(memo);
+		 System.out.println("Success");
+		//edit(memo);
+	}
+
+	
+ 	public static boolean save(File file){
+ 		BufferedWriter bw = null;
+ 		int memo_line_count=0;
+ 		String memo_file = "C:\\Users\\Owner\\sw\\memo.txt"; //메모파일 저장위치
+ 		int n = 0;
+ 		FileWriter fw = null;
+ 		//new FileWriter(new File(memo_file))
+ 		File f= null;
+ 		final String LINE_SEPARATOR = System.getProperty("line.separator");
+
 		try{
-			int n = 0;
-			String memo_file = "C:\\Users\\Owner\\sw\\memo.txt"; //메모파일 저장위치
-			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(memo_file));
+			f = new File(memo_file);
+			fw = new FileWriter(file, true);
+			bw = new BufferedWriter(fw);
 
 			System.out.println("내용을 입력하시오.");//기능에 따라 달라져야함.
-			while((n=System.in.read()) !=-1){
+			memo_line_count++;
+			while((n=System.in.read()) !='\n'){
             	bw.write(n);     // OutPutStream에 내용을 기록한다.
             	bw.flush();    // 스트림에 있는 데이터를 출력한다.
-            }            
+            }     	
+			bw.write(LINE_SEPARATOR);       
             System.in.close();
+           
+           // fw.close();
             bw.close();
             
         } catch (FileNotFoundException e) {
@@ -25,9 +47,8 @@ public class FileEdit {
         }catch (IOException e) {
             e.printStackTrace();
         }
-		return false;
+		return true;
 	}
-
 	
 	public boolean edit(File file){
 		Scanner scan = new Scanner(System.in);
