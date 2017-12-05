@@ -27,12 +27,13 @@ public class Main {
 		switch(input) {
 		case 1:
 			memo.memoMenu();
+			break;
 		case 2:
 			calculator.calculatorMenu();
 			break;
 		case 3:
 			household.houseHoldMenu();
-			
+			break;			
 		}
 
 	}
