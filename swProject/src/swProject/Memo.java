@@ -4,10 +4,10 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Memo {
-	 
+
 	   static int lineNumber = 0;
-	   static String EditContent = "", SaveContent="";
-	   static String filename = "C:\\Users\\Owner\\Documents\\Java\\swProject\\swProject\\memo.txt";
+	   static String EditContent = "";
+	   static String filename = "swProject/swProject/memo.txt";
 	   static int memo_menu = 0;
 	   
 	public void memoMenu() throws IOException{
@@ -23,24 +23,28 @@ public class Memo {
 	            System.out.println("");
 	            saveInfo();
 	            if(!fe.save(memofile))
-	               System.out.println("파일 저장 실패!");
+	               System.out.println("작성 실패!");
+	            else
+	            		System.out.println("작성 완료");
 	            
 	         }else if(memo_menu == 2){
 	            printFile(memofile);
 	            inputInfo();            
 	            
 	            if(!fe.edit(memofile, lineNumber, EditContent))
-	               System.out.println("파일 수정 실패!");
-	            
+	               System.out.println("수정 실패!");
+	            else
+				System.out.println("수정 완료");
+
 	            lineNumber = 0;
 	            EditContent = "";
-	            SaveContent="";
-	            
+	            	            
 	         }else if(memo_menu == 3){
 	        	 	printFile(memofile);
 	            if(!fe.delete(memofile))
-	               System.out.println("파일 삭제 실패!");
-	            
+	               System.out.println("삭제 실패!");
+	            else
+				System.out.println("삭제 완료");
 	         }else if(memo_menu == 4)
 	            flag = false;
 		}
@@ -63,8 +67,7 @@ public class Memo {
 		      
 		   }
 		   static public void saveInfo(){
-			   System.out.println("내용을 입력하세요.(띄어쓰기없이)");
-			      
+			   System.out.println("내용을 입력하세요.(띄어쓰기없이)");   
 		   }
 		   static public boolean printFile(File file) throws FileNotFoundException{
 			      File read = new File(filename);
@@ -80,8 +83,7 @@ public class Memo {
 			      } catch (IOException e) {
 			         e.printStackTrace();
 			         return false;
-			      }
-			       
+			      }			       
 			      return true;
 			   }
 	
