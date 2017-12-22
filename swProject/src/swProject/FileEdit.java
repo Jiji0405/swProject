@@ -113,11 +113,6 @@ public class FileEdit{
 		try{
 			
 			while((result = br.readLine()) != null){
-				System.out.println(lineNumber +". "+result);
-				lineNumber++;
-			}
-			
-			while((result = br.readLine()) != null){
 				count++;
 				if(count != update){
 					al.add(result);
