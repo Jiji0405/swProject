@@ -17,13 +17,13 @@ public class Memo {
 			memo_menu = scan.nextInt();
 			
 			if(memo_menu == 1) {
-				fe.save(file);					
+				fe.save(memofile);					
 			}
 			else if(memo_menu == 2) {
-				fe.edit(file);
+				fe.edit(memofile);
 			}
 			else if(memo_menu == 3) {
-				fe.delete(file);
+				fe.delete(memofile);
 			}
 			else if(memo_menu == 4){
 				break;
