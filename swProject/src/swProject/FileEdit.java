@@ -57,7 +57,7 @@ public class FileEdit {
                al.add(result);
          }
          
-         if(!((update > count) && update <= 0)){
+         if(!((update > 0) && (update <= count))){
             System.err.println("없는 줄 번호입니다.");
             return false;
          }
@@ -111,7 +111,7 @@ public class FileEdit {
             }
          }
          
-         if(!((update > count) && update <= 0)){
+         if(!((update > 0) && (update <= count))){
             System.err.println("없는 줄 번호입니다.");
             return false;
          }
