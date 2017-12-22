@@ -12,7 +12,7 @@ public class HouseHold {
 	static int lineNumber = 0;
 	static String EditContent = "";
 	static String filename = "swProject/swProject/accountBook.txt";
-	// static String filename = "C:\\Users\\Owner\\swe\\swProject\\swProject\\accountBook.txt";
+	// static String filename ="C:\\Users\\Owner\\swe\\swProject\\swProject\\accountBook.txt";
 
 	public void houseHoldMenu() throws IOException {
 		boolean flag = true;
