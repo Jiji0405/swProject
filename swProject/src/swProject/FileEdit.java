@@ -47,103 +47,105 @@ public class FileEdit{
         }
 		return false;
     }
-    public static boolean edit(File file){
-//		String result = "";
-		String updateString = "";
-		String line = "";
-		int update/*, count=0*/;
+
+   public boolean edit(File file, int LineNumber, String EditContent) throws IOException{
 		
-		FileReader fr = null;
-		FileWriter fw = null;
-		BufferedReader br = null;
+		String result = "";
+		int update = LineNumber, count=0;
+		int i;
+		ArrayList<String> al = new ArrayList();
+
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));   	
 		
-		System.out.println("수정할 내용의 번호를 입력하세요.");
-		update = scan.nextInt();
-		System.out.println("수정 내용을 입력하세요.");
-		updateString = scan.next();
 		
 		try{
-			fr = new FileReader(file);
-			br = new BufferedReader(fr);
 			
-			while((result = br.readLine())!= null){
+			while((result = br.readLine()) != null){
 				count++;
 				if(count == update){
-					line += updateString + "\n";
-				}else{
-					line += result + "\n";
-				}
+					al.add(EditContent);
+				}else
+					al.add(result);
 			}
-
-			System.out.println(line);
-			fw = new FileWriter(file);
 			
-			fw.write(line);
-			count = 0;	
+			bw.flush();
+			bw.close();
+			
+			bw = new BufferedWriter(new FileWriter(file));
+			
+			for(i=0 ; i<al.size(); ++i){
+				bw.write((String)al.get(i));
+				bw.newLine();
+			}
+			
+			al.clear();
+			
 			fr.close();
-			fw.close();	
+			bw.flush();
+			bw.close();
+			
+			
 		}catch (Exception e){
 			System.out.println(e.getMessage());
+			return false;		
 		}
+		
 		return true;
 	}
-	
-    public static boolean delete(File file){
-    	   
-        String result = "";
-         String updateString = "";
-         String line = "";
-         int update/*, count=0*/;
-         
-         FileReader fr = null;
-         FileWriter fw = null;
-         BufferedReader br = null;
-         
-         System.out.println("삭제할 내용의 번호를 입력하세요.");
-         update = scan.nextInt();
-         
-         try{
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
-            
-            while((result = br.readLine())!= null){
-               count++;
-               if(count != update){           
-                  line += result + "\n";
-               }
-            }
 
-            System.out.println(line);
-            fw = new FileWriter(file);
-            fw.write(line);
-            count = 0;   
-            fr.close();
-            fw.close();   
-         }catch (Exception e){
-            System.out.println(e.getMessage());
-         }
-         return true;
-     }
+	public boolean delete(File file) throws IOException{
 
- /*public static boolean edit(File file){
-   
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(br != null) 
-            	try {
-            		br.close();
-            	} catch (IOException e) {}
-        }
-		return false;
-    }*/
+		String result = "";
+		int update, count=0;
+		int lineNumber = 1;
+		int i;
+		ArrayList<String> al = new ArrayList();
+
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));  
+		
+		System.out.println("삭제할 내용의 번호를 입력하세요.");
+	    update = scan.nextInt();		
+		
+		try{
+			
+			while((result = br.readLine()) != null){
+				System.out.println(lineNumber +". "+result);
+				lineNumber++;
+			}
+			
+			while((result = br.readLine()) != null){
+				count++;
+				if(count != update){
+					al.add(result);
+				}
+			}
+			
+			bw.flush();
+			bw.close();
+			
+			bw = new BufferedWriter(new FileWriter(file));
+			
+			for(i=0 ; i<al.size(); ++i){
+				bw.write((String)al.get(i));
+				bw.newLine();
+			}
+			
+			al.clear();
+			
+			fr.close();
+			bw.flush();
+			bw.close();
+			
+			
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+			return false;		
+		}
+		
+		return true;
+	}
 }
