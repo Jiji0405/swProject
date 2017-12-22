@@ -4,31 +4,85 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Memo {
-	
+	 
+	   static int lineNumber = 0;
+	   static String EditContent = "", SaveContent="";
+	   static String filename = "C:\\Users\\Owner\\Documents\\Java\\swProject\\swProject\\memo.txt";
+	   static int memo_menu = 0;
+	   
 	public void memoMenu() throws IOException{
 		Scanner scan = new Scanner(System.in);
-		String filename = "C:\\Users\\Owner\\sw\\swProject\\src\\swProject\\memoText.txt";
 		File memofile = new File(filename);
 		FileEdit fe = new FileEdit();
-		int memo_menu = 0;
-		
-		while(true){
-			System.out.println("===메모===\n1.메모 작성, 2.메모 수정, 3.메모 삭제, 4.메모 종료\n원하는 메뉴의 번호를 입력하세요.");
-			memo_menu = scan.nextInt();
-			
-			if(memo_menu == 1) {
-				fe.save(memofile);					
-			}
-			else if(memo_menu == 2) {
-				fe.edit(memofile);
-			}
-			else if(memo_menu == 3) {
-				fe.delete(memofile);
-			}
-			else if(memo_menu == 4){
-				break;
-			}
+		boolean flag = true;
+				
+		while(flag){
+	         scan();
+	         
+	         if(memo_menu == 1){
+	            System.out.println("");
+	            saveInfo();
+	            if(!fe.save(memofile))
+	               System.out.println("파일 저장 실패!");
+	            
+	         }else if(memo_menu == 2){
+	            printFile(memofile);
+	            inputInfo();            
+	            
+	            if(!fe.edit(memofile, lineNumber, EditContent))
+	               System.out.println("파일 수정 실패!");
+	            
+	            lineNumber = 0;
+	            EditContent = "";
+	            SaveContent="";
+	            
+	         }else if(memo_menu == 3){
+	        	 	printFile(memofile);
+	            if(!fe.delete(memofile))
+	               System.out.println("파일 삭제 실패!");
+	            
+	         }else if(memo_menu == 4)
+	            flag = false;
 		}
-	}
+	      }
+		static public void scan(){
+		      Scanner scan = new Scanner(System.in);
+		      
+		      System.out.println("===메모===\n1.메모 작성, 2.메모 수정, 3.메모 삭제, 4.메모 종료\n========\n원하는 메뉴의 번호를 입력하세요.");
+		      memo_menu = scan.nextInt();      
+		   }
+		   
+		   static public void inputInfo(){
+		      Scanner scan1 = new Scanner(System.in);
+		      Scanner scan2 = new Scanner(System.in);
+		      
+		      System.out.println("수정 할 번호를 입력하세요.");
+		      lineNumber = scan1.nextInt();
+		      System.out.println("수정 내용을 입력하세요.(내용)");
+		      EditContent = String.valueOf(scan2.next());
+		      
+		   }
+		   static public void saveInfo(){
+			   System.out.println("내용을 입력하세요.(띄어쓰기없이)");
+			      
+		   }
+		   static public boolean printFile(File file) throws FileNotFoundException{
+			      File read = new File(filename);
+			      FileReader fr = new FileReader(read);
+			       BufferedReader br = new BufferedReader(fr);     
+			       String line = "";
+			       int count = 1;
+			       try {
+			         while((line = br.readLine()) != null){
+			            System.out.println(count +". "+ line);
+			            count++;
+			         }
+			      } catch (IOException e) {
+			         e.printStackTrace();
+			         return false;
+			      }
+			       
+			      return true;
+			   }
 	
 }

@@ -8,7 +8,7 @@ public class HouseHold{
 	
 	public void houseHoldMenu() throws IOException{
 		Scanner scan = new Scanner(System.in);
-		String filename = "C:/ClassJava/eo/sw/accountBook.txt";
+		String filename = "C:/ClassJava/eo/swProject/swProject/accountBook.txt";
 		File file = new File(filename);
 		boolean flag = true;
 		FileEdit fe = new FileEdit();
@@ -16,7 +16,7 @@ public class HouseHold{
 		
 		
 		while(flag){
-			System.out.println("===가계부===\n1.가계부 작성, 2.가계부 수정, 3.가계부 삭제, 4.가계부 종료\n원하는 메뉴의 번호를 입력하세요.");
+			System.out.println("===가계부===\n1.가계부 작성, 2.가계부 수정, 3.가계부 삭제, 4.가계부 종료\n=========\n원하는 메뉴의 번호를 입력하세요.");
 			menu = scan.nextInt();
 			
 			if(menu == 1){

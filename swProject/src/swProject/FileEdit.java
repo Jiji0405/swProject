@@ -10,44 +10,34 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FileEdit{
-	C:\Users\Owner\git\swProject\swProject\src\swProject
-	    static File file = new File("C:\\Users\\Owner\\git\\swProject\\swProject\\src\\swProject", "fil.txt");
-		static Scanner scan = new Scanner(System.in);
+	
+	    static Scanner scan = new Scanner(System.in);
 	 	static String saveString="", result = "";
-	 	static int count=0, line_count, totalcount;
-	 	
-	    
-    public static void main(String[] args) throws FileNotFoundException{
-    
-       save(file);
-       edit(file);
-       delete(file); 
-    }
+	 	static int count=0, line_count;
     
     public static boolean save(File file) throws FileNotFoundException{
-    		FileReader fr = new FileReader(file);
-		BufferedReader br = new BufferedReader(fr);		
-    		BufferedWriter bw = null;
-    		
-    		try {
-            bw = new BufferedWriter(new FileWriter(file, true));
-            while((result = br.readLine())!= null){
-    			line_count++;
-            }
-            totalcount = line_count;
-            System.out.print(++totalcount + "/");
-            saveString = scan.next();
-            bw.write(saveString);
-            bw.newLine();
-            bw.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(bw != null) try {bw.close(); } catch (IOException e) {}
-        }
-		return false;
-    }
-
+	          FileReader fr = new FileReader(file);
+			  BufferedReader br = new BufferedReader(fr);      
+	          BufferedWriter bw = null;
+	          
+	          try {
+	                bw = new BufferedWriter(new FileWriter(file, true));
+	                while((result = br.readLine())!= null){
+	                    line_count++;
+	                }
+	                System.out.print(++line_count + "/");
+	                saveString = scan.next();
+	                bw.write(saveString);
+	                line_count =0;
+	                bw.newLine();
+	                bw.flush();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }finally {
+	                if(bw != null) try {bw.close(); } catch (IOException e) {}
+	            }
+	          return true;
+	    }
    public boolean edit(File file, int LineNumber, String EditContent) throws IOException{
 		
 		String result = "";
@@ -58,7 +48,6 @@ public class FileEdit{
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));   	
-		
 		
 		try{
 			
