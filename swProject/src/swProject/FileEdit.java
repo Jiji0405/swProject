@@ -143,4 +143,8 @@ public class FileEdit {
 		return true;
 	}
 
+ public String getline(){
+	return saveString;
+  }
+
 }
