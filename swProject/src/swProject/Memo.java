@@ -8,7 +8,8 @@ public class Memo {
 	static int lineNumber = 0;
 	static String EditContent = "";
 	static String filename = "swProject/swProject/memo.txt";
-	// static String filename ="C:\\Users\\Owner\\swe\\swProject\\swProject\\memo.txt";
+	// static String filename
+	// ="C:\\Users\\Owner\\swe\\swProject\\swProject\\memo.txt";
 
 	public void memoMenu() throws IOException {
 		Scanner scan = new Scanner(System.in);
