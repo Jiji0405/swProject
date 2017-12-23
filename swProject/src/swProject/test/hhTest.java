@@ -39,7 +39,7 @@ public class hhTest {
 		FileEdit fe = new FileEdit();
 		File file = new File(path);
 		int lineNumber = -1;
-		String line = "2017-12-25/영화관람/11000원";
+		String line = "2017-12-25/watchingMovie/11000";
 		
 		assertEquals(fe.edit(file, lineNumber, line), false);
 	}
